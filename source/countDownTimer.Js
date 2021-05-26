@@ -4,28 +4,30 @@ class countDownTimer {
     this.targetDate = targetDate;
     this.intervalTimer = null;
     this.timer();
+    this.start();
   }
 
   timer() {
     this.intervalTimer = setInterval(() => {
-      var time = this.targetDate - new Date();
-
-      if (time < 0) {
-        clearInterval(this.intervalTimer);
-        return;
-      }
-
-      const days = Math.floor(time / (1000 * 60 * 60 * 24));
-      const hours = Math.floor(
-        (time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
-      );
-      const mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
-      const secs = Math.floor((time % (1000 * 60)) / 1000);
-
-      daysEl.textContent = days;
-      hoursEl.textContent = hours;
-      minsEl.textContent = mins;
-      secsEl.textContent = secs;
+      this.start();
     }, 1000);
+  }
+  start() {
+    var time = this.targetDate - new Date();
+
+    if (time < 0) {
+      clearInterval(this.intervalTimer);
+      return;
+    }
+
+    const days = Math.floor(time / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((time % (1000 * 60)) / 1000);
+
+    daysEl.textContent = days;
+    hoursEl.textContent = hours;
+    minsEl.textContent = mins;
+    secsEl.textContent = secs;
   }
 }
